@@ -4,23 +4,23 @@ package tn.esprit.gestionzoo.entities;
 import java.util.Objects;
 
 public class Animal {
-    public String family;
-    public String name;
+    protected String family;
+    protected String name;
 
     //Instruction 18 : Encapsulation des attributs
-    private int age;
-    public void setAge(int age){
+    protected int age;
+    protected void setAge(int age){
         if(age<=0){
             System.out.println("L'age ne doit pas etre négatif !! Donner l'age de l'animal :");
         }
         else
             this.age=age;
     }
-    public int getAge (){
+    protected int getAge (){
         return age;
     }
 
-    public boolean isMammal;
+    protected boolean isMammal;
     public Animal(){}
     //Instruction 6 : Constructeurs paramétrés
     public Animal(String family,String name,int age,boolean isMammal){
