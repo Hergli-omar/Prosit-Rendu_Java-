@@ -1,4 +1,8 @@
-import java.util.Scanner;
+//Instruction 19 : Organisation des packages
+package tn.esprit.gestionzoo.main;
+import tn.esprit.gestionzoo.entities.Zoo;
+import tn.esprit.gestionzoo.entities.Animal;
+
 public class ZooManagement {
     int nbrCages = 20;
     String zooName = "my zoo";
@@ -19,18 +23,18 @@ public class ZooManagement {
 
 
        myZoo1.addAnimal(lion);
-       myZoo2.addAnimal(lion);
-       myZoo3.addAnimal(lion);
-       myZoo3.addAnimal(Giraffe);
+       myZoo1.addAnimal(lion);
+       myZoo1.addAnimal(lion);
+       myZoo1.addAnimal(Giraffe);
 
-        Zoo gagnant = myZoo3.compareZoo(myZoo1, myZoo3);
+        /*tn.esprit.gestionzoo.entities.Zoo gagnant = myZoo3.compareZoo(myZoo1, myZoo3);
 
         if (gagnant != null) {
             gagnant.displayZoo();
             gagnant.displayZooAnimals();
         } else {
             System.out.println("Égalité !");
-        }
+        }*/
 
     }
 }
