@@ -10,4 +10,8 @@ public class Pingouin extends Aquatic{
     public String toString(){
         return name+" appartient à la famille des "+family+" à "+age+" ans "+" ,is mammal= "+isMammal+" habite "+habitat+" peut atteindre une profendeur de "+ swimmingDepth;
     }
+    @Override
+    public void swim(){
+        System.out.println("This Pingouin is swimming.");
+    }
 }

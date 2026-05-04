@@ -3,6 +3,9 @@ package tn.esprit.gestionzoo.entities;
 
 public class Zoo {
     public Animal[] animals=new Animal[3];
+
+    public Aquatic[] aquaticAnimals=new Aquatic [10];
+
     //Instruction 18 : Encapsulation des attributs
     private String name ;
     public void setName(String name){
@@ -18,6 +21,8 @@ public class Zoo {
     public String city ;
     /*Instruction 14 : Constante pour le nombre de cages*/final int nbrCages=25;
     public int compteur=0;
+    public int compteurAquatic=0;
+
     public int i;
     public Zoo(){}
     // Instruction 6 : Constructeurs paramétrés
@@ -112,6 +117,40 @@ public class Zoo {
         }
         else
             return null;
+    }
+
+    public void addAquaticAnimal(Aquatic aquatic){
+        if(compteurAquatic<=9){
+            aquaticAnimals[compteurAquatic] = aquatic;
+            compteurAquatic++;
+            System.out.println("L'animal Aquatic est bien ajouté.");
+        }
+        else System.out.println("Pas possible d'ajouter !! Les place Aquatic sont plein.");
+    }
+
+    public float maxPenguinSwimmingDepth(){
+        float max=0f;
+        for(i=0;i<compteurAquatic;i++){
+            if(aquaticAnimals[i].getClass()== Pingouin.class){
+                Pingouin P = (Pingouin) aquaticAnimals[i];
+                if(P.swimmingDepth>max)
+                    max=P.swimmingDepth;
+            }
+        }
+        return max;
+    }
+
+    public void displayNumberOfAquaticByType(){
+        int nbrDauphin=0;
+        int nbrPinguin=0;
+        for(i=0;i<compteurAquatic;i++){
+            if(aquaticAnimals[i].getClass()== Pingouin.class)
+                nbrPinguin++;
+            if(aquaticAnimals[i].getClass()== Dauphin.class)
+                nbrDauphin++;
+        }
+        System.out.println("Le nombre des Dauphin est = "+nbrDauphin);
+        System.out.println("Le nombre des Pinguin est = "+nbrPinguin);
     }
 
 
