@@ -47,5 +47,44 @@ public class Main {
         for (Employe e : itEmployes) {
             System.out.println(e);
         }
+
+        System.out.println("\n==============================================");
+        System.out.println("TESTS DE LA GESTION DES DEPARTEMENTS (HashSet)");
+        System.out.println("==============================================");
+
+        tn.esprit.gestionemploye.services.DepartementHashSet depManager = new tn.esprit.gestionemploye.services.DepartementHashSet();
+        
+        tn.esprit.gestionemploye.entities.Departement d1 = new tn.esprit.gestionemploye.entities.Departement(3, "IT", 50);
+        tn.esprit.gestionemploye.entities.Departement d2 = new tn.esprit.gestionemploye.entities.Departement(1, "RH", 20);
+        tn.esprit.gestionemploye.entities.Departement d3 = new tn.esprit.gestionemploye.entities.Departement(4, "Finance", 30);
+        tn.esprit.gestionemploye.entities.Departement d4 = new tn.esprit.gestionemploye.entities.Departement(2, "Marketing", 15);
+        tn.esprit.gestionemploye.entities.Departement d5 = new tn.esprit.gestionemploye.entities.Departement(3, "IT", 50); // Doublon (même id et nom)
+
+        System.out.println("--- Ajout des départements ---");
+        depManager.ajouterDepartement(d1);
+        depManager.ajouterDepartement(d2);
+        depManager.ajouterDepartement(d3);
+        depManager.ajouterDepartement(d4);
+        depManager.ajouterDepartement(d5); // Ne devrait pas être ajouté car HashSet (grâce à equals/hashCode)
+        depManager.afficherDepartements();
+
+        System.out.println("\n--- Recherche de département par nom (RH) ---");
+        System.out.println("Résultat: " + depManager.rechercherDepartement("RH"));
+
+        System.out.println("\n--- Recherche de département par objet (d1) ---");
+        System.out.println("Résultat: " + depManager.rechercherDepartement(d1));
+
+        System.out.println("\n--- Suppression du département d4 (Marketing) ---");
+        depManager.supprimerDepartement(d4);
+        depManager.afficherDepartements();
+        
+        // Ré-ajout pour les tris
+        depManager.ajouterDepartement(d4);
+
+        System.out.println("\n--- Tri des départements par ID ---");
+        depManager.trierDepartementsParId();
+
+        System.out.println("\n--- Tri des départements par Nom et Nombre d'employés ---");
+        depManager.trierDepartementsParNomEtNombreEmployes();
     }
 }
