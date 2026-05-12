@@ -55,5 +55,25 @@ public class ZooManagement {
 
         System.out.println(betri91.equals(betri92));
 
+        // --- Test Instructions 32, 33, 34 ---
+        System.out.println("\n--- Tests d'ajout d'animaux avec Exceptions ---");
+        Zoo myZooTest = new Zoo("TestZoo", "TestCity");
+        Animal validAnimal1 = new Animal("Felids", "Lion", 5, true);
+        Animal invalidAgeAnimal = new Animal("Felids", "Tiger", -2, true);
+        Animal validAnimal2 = new Animal("Felids", "Cheetah", 3, true);
+        Animal validAnimal3 = new Animal("Felids", "Panther", 4, true);
+        Animal validAnimal4 = new Animal("Felids", "Leopard", 2, true);
+
+        Animal[] animalsToTest = {validAnimal1, invalidAgeAnimal, validAnimal2, validAnimal3, validAnimal4};
+
+        for (Animal a : animalsToTest) {
+            try {
+                System.out.println("\nTentative d'ajout d'un animal...");
+                myZooTest.addAnimal(a);
+            } catch (InvalidAgeException | ZooFullException e) {
+                System.out.println("Erreur: " + e.getMessage());
+            }
+            System.out.println("Nombre d'animaux présents dans le zoo : " + myZooTest.compteur);
+        }
     }
 }

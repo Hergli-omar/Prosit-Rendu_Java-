@@ -19,16 +19,19 @@ public class Zoo {
     }
 
     public String city ;
-    /*Instruction 14 : Constante pour le nombre de cages*/final int nbrCages=25;
+    /*Instruction 14 : Constante pour le nombre de cages*/final int nbrCages;
     public int compteur=0;
     public int compteurAquatic=0;
 
     public int i;
-    public Zoo(){}
+    public Zoo(){
+        this.nbrCages = 3;
+    }
     // Instruction 6 : Constructeurs paramétrés
     public Zoo( String name,String city){
         this.name=name;
         this.city=city;
+        this.nbrCages = 3;
     }
     //Instruction 8 : Méthode displayZoo():Q1
     public void displayZoo(){
@@ -51,22 +54,22 @@ public class Zoo {
     }
     //Instruction 17 :
     //1
-    public boolean addAnimal(Animal animal) {
-        if(!isZooFull()) {
-            for (int i = 0; i < compteur; i++) {
-                if (animal.equals(animals[i])) {
-                    System.out.println("L'animal existe déjà dans le zoo.");
-                    return false;
-                }
+    public void addAnimal(Animal animal) throws ZooFullException, InvalidAgeException {
+        if (animal.getAge() < 0) {
+            throw new InvalidAgeException("Âge d’animal invalide : l’âge ne peut pas être négatif.");
+        }
+        if (compteur >= nbrCages) {
+            throw new ZooFullException("Le zoo est plein, impossible d’ajouter un nouvel animal.");
+        }
+        for (int i = 0; i < compteur; i++) {
+            if (animal.equals(animals[i])) {
+                System.out.println("L'animal existe déjà dans le zoo.");
+                return;
             }
-            animals[compteur] = animal;
-            compteur++;
-            System.out.println("L'animal est bien ajouté.");
-            return true;
         }
-        else {
-            return false;
-        }
+        animals[compteur] = animal;
+        compteur++;
+        System.out.println("L'animal est bien ajouté.");
     }
     //2
     public int searchAnimal(Animal animal) {
