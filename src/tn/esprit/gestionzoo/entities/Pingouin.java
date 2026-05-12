@@ -1,17 +1,27 @@
 package tn.esprit.gestionzoo.entities;
 
-public class Pingouin extends Aquatic{
+public class Pingouin extends Aquatic {
     protected float swimmingDepth;
-    public Pingouin(String family,String name,int age,boolean isMammal,String habitat,float swimmingDepth){
-        super(family,name,age,isMammal,habitat);
-        this.swimmingDepth=swimmingDepth;
+
+    public Pingouin() {}
+
+    public Pingouin(AnimalFamily family, String name, int age, boolean isMammal, String habitat, float swimmingDepth) {
+        super(family, name, age, isMammal, habitat);
+        this.swimmingDepth = swimmingDepth;
     }
+
     @Override
-    public String toString(){
-        return name+" appartient à la famille des "+family+" à "+age+" ans "+" ,is mammal= "+isMammal+" habite "+habitat+" peut atteindre une profendeur de "+ swimmingDepth;
-    }
-    @Override
-    public void swim(){
+    public void swim() {
         System.out.println("This Pingouin is swimming.");
+    }
+
+    @Override
+    public void makeSound() {
+        System.out.println("Pingouin makes a honk sound.");
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " peut atteindre une profendeur de " + swimmingDepth;
     }
 }

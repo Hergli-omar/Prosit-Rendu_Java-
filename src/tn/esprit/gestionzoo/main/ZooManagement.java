@@ -1,5 +1,5 @@
-//Instruction 19 : Organisation des packages
 package tn.esprit.gestionzoo.main;
+
 import tn.esprit.gestionzoo.entities.*;
 
 public class ZooManagement {
@@ -10,46 +10,27 @@ public class ZooManagement {
 
     public static void main(String[] args) {
 
+        Terrestrial lion = new Terrestrial(AnimalFamily.FELIDAE, "Simba", 1, true, 4);
+        Terrestrial giraffe = new Terrestrial(AnimalFamily.GIRAFFIDAE, "zohra", 15, true, 4);
+        Dauphin orca = new Dauphin(AnimalFamily.DELPHINIDAE, "wiw", 6, "Océan", 35.5f);
+        Terrestrial turtle = new Terrestrial(AnimalFamily.TURTLES, "Frank", 120, false, 4);
 
-        Animal lion=new Animal("Felids","Simba",1,true);
-        Animal Giraffe=new Animal("Giraffidae","zohra",15,true);
-        Animal Orca=new Animal("Delphinidés","wiw",6,true);
-        Animal turtle=new Animal("turtles","Frank",120,false);
+        Zoo myZoo1 = new Zoo("friguia", "Sousse");
+        Zoo myZoo2 = new Zoo("jungle", "Gafsa");
+        Zoo myZoo3 = new Zoo("belvidere", "Tunis");
 
-        Zoo myZoo1=new Zoo("friguia","Sousse");
-        Zoo myZoo2=new Zoo("jungle","Gafsa");
-        Zoo myZoo3=new Zoo("belvidere","Tunis");
+        Dauphin d1 = new Dauphin(AnimalFamily.DELPHINIDAE, "Flipper", 5, "Océan Atlantique", 25.5f);
+        Terrestrial temse7 = new Terrestrial(AnimalFamily.LIZARDS, "crocodile", 22, false, 4);
 
-        //Aquatic balen=new Aquatic("7out","laboon",70,true,"one piece");
-        Dauphin d1 = new Dauphin("Delphinidae", "Flipper", 5, "Océan Atlantique", 25.5f);
-        Terrestrial temse7 =new Terrestrial("lizards","crocodile",22,false,4);
-
-        /*System.out.println(balen);
-        System.out.println(d1);
-        System.out.println(betri9);
-        System.out.println(temse7);
-
-        balen.swim();
-        d1.swim();
-        betri9.swim();*/
-
-        /*for(Aquatic aquatic:myZoo1.aquaticAnimals){
-            aquatic.swim();
-        }*/
-
-        //myZoo1.addAquaticAnimal(balen);
         myZoo1.addAquaticAnimal(d1);
-        //myZoo1.addAquaticAnimal(betri9);
-        /*int i;
-        for(i=0;i< myZoo1.compteurAquatic;i++){
-                myZoo1.aquaticAnimals[i].swim();
-        }*/
-        Pingouin betri91 =new Pingouin("batari9","bomba",3,false,"ocean",15.3f);
-        Pingouin betri92 =new Pingouin("batari9","bomba",3,false,"ocean",15.5f);
-        Pingouin betri93 =new Pingouin("batari9","hehe",3,false,"ocean",16f);
+
+        Pingouin betri91 = new Pingouin(AnimalFamily.BATARI9, "bomba", 3, false, "ocean", 15.3f);
+        Pingouin betri92 = new Pingouin(AnimalFamily.BATARI9, "bomba", 3, false, "ocean", 15.5f);
+        Pingouin betri93 = new Pingouin(AnimalFamily.BATARI9, "hehe", 3, false, "ocean", 16f);
         myZoo1.addAquaticAnimal(betri91);
         myZoo1.addAquaticAnimal(betri92);
         myZoo1.addAquaticAnimal(betri93);
+        
         System.out.println(myZoo1.maxPenguinSwimmingDepth());
         myZoo1.displayNumberOfAquaticByType();
 
@@ -58,11 +39,11 @@ public class ZooManagement {
         // --- Test Instructions 32, 33, 34 ---
         System.out.println("\n--- Tests d'ajout d'animaux avec Exceptions ---");
         Zoo myZooTest = new Zoo("TestZoo", "TestCity");
-        Animal validAnimal1 = new Animal("Felids", "Lion", 5, true);
-        Animal invalidAgeAnimal = new Animal("Felids", "Tiger", -2, true);
-        Animal validAnimal2 = new Animal("Felids", "Cheetah", 3, true);
-        Animal validAnimal3 = new Animal("Felids", "Panther", 4, true);
-        Animal validAnimal4 = new Animal("Felids", "Leopard", 2, true);
+        Terrestrial validAnimal1 = new Terrestrial(AnimalFamily.FELIDAE, "Lion", 5, true, 4);
+        Terrestrial invalidAgeAnimal = new Terrestrial(AnimalFamily.FELIDAE, "Tiger", -2, true, 4);
+        Terrestrial validAnimal2 = new Terrestrial(AnimalFamily.FELIDAE, "Cheetah", 3, true, 4);
+        Terrestrial validAnimal3 = new Terrestrial(AnimalFamily.FELIDAE, "Panther", 4, true, 4);
+        Terrestrial validAnimal4 = new Terrestrial(AnimalFamily.FELIDAE, "Leopard", 2, true, 4);
 
         Animal[] animalsToTest = {validAnimal1, invalidAgeAnimal, validAnimal2, validAnimal3, validAnimal4};
 
@@ -75,5 +56,28 @@ public class ZooManagement {
             }
             System.out.println("Nombre d'animaux présents dans le zoo : " + myZooTest.compteur);
         }
+
+        // --- Polymorphisme et tests ---
+        System.out.println("\n--- Tests de Polymorphisme et interfaces ---");
+        Animal a = new Dauphin(AnimalFamily.DELPHINIDAE, "PolymorphDolphin", 4, "Ocean", 30.0f);
+        
+        // Appel méthode polymorphique abstraite
+        a.makeSound();
+
+        // Downcasting pour appeler la méthode spécifique swim()
+        if (a instanceof Aquatic) {
+            ((Aquatic) a).swim();
+        }
+
+        // Utilisation des interfaces alimentaires
+        if (a instanceof Carnivore) {
+            ((Carnivore) a).eatMeat();
+        }
+
+        System.out.println("--- Test Terrestrial ---");
+        lion.makeSound();
+        lion.walk();
+        lion.eatMeat();
+        lion.eatPlant();
     }
 }

@@ -109,13 +109,13 @@ public class Zoo {
         }
     }
 
-    public Zoo compareZoo(Zoo zoo1 ,Zoo zoo2){
+    public static Zoo comparerZoo(Zoo zoo1 ,Zoo zoo2){
         if (zoo1.compteur>zoo2.compteur){
-            System.out.println("Le zoo le plus peuplé est : " + zoo1.name);
+            System.out.println("Le zoo le plus peuplé est : " + zoo1.getName());
             return zoo1;
         }
         else if(zoo1.compteur<zoo2.compteur) {
-            System.out.println("Le zoo le plus peuplé est : " + zoo2.name);
+            System.out.println("Le zoo le plus peuplé est : " + zoo2.getName());
             return zoo2;
         }
         else
